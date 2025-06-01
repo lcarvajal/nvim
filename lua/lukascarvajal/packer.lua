@@ -45,6 +45,8 @@ use {
   }
 }
 
+-- Windsurf / Codium ai assistant
+use 'Exafunction/windsurf.vim'
 
 end)
 
