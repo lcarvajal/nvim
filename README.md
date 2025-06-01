@@ -10,6 +10,8 @@ Lukas's personalized Neovim config.
 ## Dependencies
 
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [prettier](https://github.com/prettier/prettier)
+- [stylua](https://github.com/JohnnyMorganz/stylua)
 
 ## Adding new plugins
 
