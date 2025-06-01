@@ -5,6 +5,12 @@ Lukas's personalized Neovim config.
 - Package manager: [Packer](https://github.com/wbthomason/packer.nvim)
 - Theme: [Gruvbox Material](https://github.com/sainnhe/gruvbox-material)
 
+# Setup
+
+## Dependencies
+
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+
 ## Adding new plugins
 
 1. Add plugin to `lua/lukascarvajal/packer.lua`
