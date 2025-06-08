@@ -70,5 +70,13 @@ vim.keymap.set("n", "K", function()
 	vim.diagnostic.open_float(nil, { scope = "line", focusable = false })
 end, { desc = "Show diagnostic under cursor" })
 
-vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = "Code Action" })
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 
+-- Commands
+
+vim.keymap.set(
+	"n",
+	"<leader>ef",
+	":silent !npx eslint --fix %<CR>:edit!<CR>",
+	{ noremap = true, silent = true, desc = "Fix current file with eslint --fix" }
+)

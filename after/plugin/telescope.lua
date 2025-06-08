@@ -13,7 +13,7 @@ vim.keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<CR>", {
 	desc = "Browse open buffers",
 })
 
-vim.keymap.set('n', '<leader>de', require('telescope.builtin').diagnostics, { desc = "Show diagnostics" })
+vim.keymap.set("n", "<leader>pd", require("telescope.builtin").diagnostics, { desc = "Show diagnostics" })
 
 vim.keymap.set("n", "<leader>pq", function()
 	builtin.quickfix()
@@ -44,4 +44,4 @@ vim.keymap.set("n", "<leader>m", function()
 	end
 
 	builtin.quickfix()
-end, { desc = "Run make, inject diagnostics, show in Telescope" })
+end, { desc = "Run make and show diagnostics with Telescope" })

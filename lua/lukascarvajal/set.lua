@@ -47,4 +47,3 @@ vim.diagnostic.config({
 		prefix = "",
 	},
 })
-
