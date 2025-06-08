@@ -1,20 +1,16 @@
 vim.g.mapleader = " "
 
--- Navigate to current directory
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Open file explorer" })
 
 vim.keymap.set('t', '<C-x>', function()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-\\><C-n>', true, false, true), 'n', true)
-  vim.cmd('wincmd k')  -- jump up window specifically
+  vim.cmd('wincmd k')
 end, { noremap = true, silent = true, desc = "Exit terminal mode and switch to upper window" })
 
 vim.keymap.set("n", "<leader>r", function()
-  -- Save the current file
   vim.cmd("w")
-
   local file = vim.fn.expand("%:p")
 
-  -- Try to find a terminal window
   local term_win = nil
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local buf = vim.api.nvim_win_get_buf(win)
@@ -24,24 +20,26 @@ vim.keymap.set("n", "<leader>r", function()
     end
   end
 
-  -- If there's no terminal window, open one and move into it
   if not term_win then
     vim.cmd("belowright split | terminal")
     term_win = vim.api.nvim_get_current_win()
   end
 
-  -- Get terminal buffer and job id
   local term_buf = vim.api.nvim_win_get_buf(term_win)
   local job_id = vim.b[term_buf] and vim.b[term_buf].terminal_job_id
-
-  -- Scroll to bottom of terminal
   vim.api.nvim_win_set_cursor(term_win, {vim.api.nvim_buf_line_count(term_buf), 0})
 
-  -- If we have a job id, send the Elixir command
   if job_id then
     vim.fn.chansend(job_id, "elixir " .. file .. "\n")
   else
     print("❌ Could not get terminal job ID.")
   end
 end, { desc = "Run Elixir script in terminal" })
+
+vim.keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", { noremap = true, silent = true, desc = "Next buffer" })
+vim.keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", { noremap = true, silent = true, desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { noremap = true, silent = true, desc = "Delete current buffer" })
+vim.keymap.set("n", "<leader>bw", "<cmd>bwipeout<CR>", { noremap = true, silent = true, desc = "Wipe buffer from buffer list" })
+vim.keymap.set("n", "<leader>bl", "<cmd>ls<CR>", { noremap = true, silent = true, desc = "List all buffers" })
+vim.keymap.set("n", "<leader>b", ":b ", { noremap = true, desc = "Switch to buffer by number or name" })
 
